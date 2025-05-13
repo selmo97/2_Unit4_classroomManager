@@ -4,7 +4,7 @@ const { faker } = require("@faker-js/faker");
 const prisma = require("./index");
 
 async function seed() {
-  console.log("🌱Seeding the database with Prisma");
+  console.log("🌱Seeding the database");
   try {
     // Clear the database.
     await prisma.student.deleteMany();
@@ -24,7 +24,7 @@ async function seed() {
 
     // Add 4 students for each instructor.
     await Promise.all(
-      instructors.flatmap((instructor) =>
+      instructors.flatMap((instructor) =>
       [...Array(4)].map(() => 
       prisma.student.create({
         data: {
